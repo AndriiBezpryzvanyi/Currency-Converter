@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
-import Converter from "./components/Converter/Converter";
-import { GET } from "./API/api";
+import Header from "./components/header/Header";
+import Converter from "./components/converter/Converter";
+import { getCurrency } from "./services/currency";
+import { ICurrency } from "./utils/types";
 
 import styles from "./App.module.css";
-import { getCurrency } from "./services/currency";
 
 function App() {
-  const [currencies, setCurrencies] = useState<any>();
+  const [listCurrency, setListCurrency] = useState<ICurrency[] | null>();
 
-  const hadlerCurrency = async () => {
+  const handlerCurrency = async () => {
     const currency = await getCurrency();
-    setCurrencies(currency.data);
-    console.log(currency.data);
+    setListCurrency(currency.data);
   };
 
   useEffect(() => {
-    hadlerCurrency();
+    handlerCurrency();
   }, []);
 
   return (
     <div className={styles.mainContainer}>
-      <Header />
-      <Converter />
+      <Header currency={listCurrency} />
+      <Converter currency={listCurrency} />
     </div>
   );
 }

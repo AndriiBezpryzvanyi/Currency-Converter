@@ -1,9 +1,27 @@
 .container {
+  width: 100%;
+  box-shadow: 0 0 14px 0px rgb(90, 89, 89);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .container svg {
-  width: 50px;
+  width: 40px;
   height: auto;
   fill: green;
-  margin: 10px;
+  margin: 10px 20px;
+}
+
+.headerCurrencyBlock {
+  width: 230px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+.name {
+  color: rgb(114, 110, 105);
+  font-size: 17px;
+  font-weight: 600;
 }
