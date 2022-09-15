@@ -7,7 +7,7 @@ import { ICurrency } from "./types";
 import styles from "./App.module.css";
 
 function App() {
-  const [listCurrency, setListCurrency] = useState<ICurrency[] | []>([]);
+  const [listCurrency, setListCurrency] = useState<ICurrency[]>([]);
 
   const handlerCurrency = async () => {
     const currency = await getCurrency();

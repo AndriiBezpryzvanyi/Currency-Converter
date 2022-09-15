@@ -6,11 +6,6 @@ export interface ICurrency {
   exchangedate: string;
 }
 
-export interface IConverterState {
-  currency?: ICurrency | null;
-  value: number | string | null;
-}
-
 export interface Props {
   currency: ICurrency[];
 }

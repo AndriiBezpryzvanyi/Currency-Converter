@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { IConverterState, Props } from "../../types";
+import React from "react";
+import { Props } from "../../types";
 import { Select, MenuItem, TextField } from "@mui/material";
-import { initialState, inputs } from "./constants";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import { useExchange } from "../../hooks/useExchange";
 
 import styles from "./converterStyles.module.css";
 
 const Converter: React.FC<Props> = ({ currency }) => {
-  const [firstСurrency, setFirstCurrency] =
-    useState<IConverterState>(initialState);
-  const [secondCurrency, setSecondCurrency] =
-    useState<IConverterState>(initialState);
+  const arrowsIconStyles = {
+    position: "absolute",
+    width: "40px",
+    height: "auto",
+    fill: "rgb(116, 116, 109)",
+  };
+
+  const inputs = useExchange(currency);
 
   if (!currency) {
     return <div className={styles.loading}>...Loading</div>;
@@ -18,24 +22,11 @@ const Converter: React.FC<Props> = ({ currency }) => {
 
   return (
     <div className={styles.container}>
-      <SyncAltIcon
-        sx={{
-          position: "absolute",
-          width: "40px",
-          height: "auto",
-          fill: "rgb(116, 116, 109)",
-        }}
-      />
-      {inputs(
-        firstСurrency,
-        setFirstCurrency,
-        secondCurrency,
-        setSecondCurrency,
-        currency
-      ).map((item) => (
+      <SyncAltIcon sx={arrowsIconStyles} />
+      {inputs.map((item) => (
         <div className={styles.inputsBlock} key={item.id}>
           <Select
-            value={item.value.currency?.cc ?? ""}
+            value={item?.selectValue?.cc ?? ""}
             key={item.id}
             onChange={item.handleChangeSelect}
             className={styles.select}
@@ -49,7 +40,7 @@ const Converter: React.FC<Props> = ({ currency }) => {
           <TextField
             type="number"
             onChange={item.handleChangeField}
-            value={item.value.value ?? ""}
+            value={item.inputValue ?? ""}
             variant="outlined"
             className={styles.textField}
           />
