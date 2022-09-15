@@ -12,5 +12,5 @@ export interface IConverterState {
 }
 
 export interface Props {
-  currency?: ICurrency[] | null;
+  currency: ICurrency[];
 }

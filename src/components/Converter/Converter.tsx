@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { IConverterState, Props, ICurrency } from "../../utils/types";
-import { Select, MenuItem, TextField, SelectChangeEvent } from "@mui/material";
+import { IConverterState, Props } from "../../types";
+import { Select, MenuItem, TextField } from "@mui/material";
 import { initialState, inputs } from "./constants";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 

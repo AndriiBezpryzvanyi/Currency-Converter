@@ -1,6 +1,6 @@
 import React from "react";
 import { SelectChangeEvent } from "@mui/material";
-import { ICurrency, IConverterState } from "../../utils/types";
+import { ICurrency, IConverterState } from "../../types";
 
 export const initialState = { currency: null, value: null };
 
@@ -9,7 +9,7 @@ export const inputs = (
   setFirstCurrency: React.Dispatch<React.SetStateAction<IConverterState>>,
   secondCurrency: IConverterState,
   setSecondCurrency: React.Dispatch<React.SetStateAction<IConverterState>>,
-  currency: ICurrency[] | null
+  currency: ICurrency[]
 ) => {
   const exchangeForFirstInput = (newValue: IConverterState) => {
     if (
@@ -28,7 +28,7 @@ export const inputs = (
 
   const handleChangeFirstSelect = (event: SelectChangeEvent) => {
     const newValue = {
-      currency: currency?.find(
+      currency: currency.find(
         (item: ICurrency) => item.cc === event.target.value
       ),
       value: firstСurrency?.value,
@@ -55,7 +55,7 @@ export const inputs = (
 
   const handleChangeSecondSelect = (event: SelectChangeEvent) => {
     const newValue = {
-      currency: currency?.find(
+      currency: currency.find(
         (item: ICurrency) => item.cc === event.target.value
       ),
       value: secondCurrency?.value,
